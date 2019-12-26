@@ -3,16 +3,21 @@ import colorama
 import os, time
 from getpass import getpass
 
+import configparser
+
 def __main__():
+	configm = configparser.ConfigParser()
+	configm.read('settings.ini')
 
 	def clear():
 		os.system("clear")
 
 	colorama.init()
 	clear()
-	SERVER = input("[+] Server : ")
-	username = input("[+] Username : ")
-	password = getpass("[+] Password : ")
+	config = configm['DEFAULT']
+	SERVER = config['server']
+	username = config['username']
+	password = config['password']
 
 	try:
 		print("[" + colorama.Fore.LIGHTGREEN_EX + "+" + colorama.Style.RESET_ALL + "] Connecting...")
